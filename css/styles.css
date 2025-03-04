@@ -493,3 +493,80 @@ footer {
   opacity: 1;
   filter: none;
 }
+@media screen and (max-width: 768px) {
+  /* Adjust the header container on all pages for mobile */
+  .header-container {
+    top: 20%;
+    right: 10%;
+    width: 80%;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .header-container h1 {
+    font-size: 48pt;
+    margin-bottom: 5px;
+  }
+  
+  .header-container h2 {
+    font-size: 32pt;
+    margin-bottom: 10px;
+  }
+  
+  /* Center navigation and adjust font size */
+  .page-nav {
+    margin-bottom: 10px;
+    align-self: center;
+    width: 100%;
+    text-align: center;
+    padding-left: 0;
+  }
+  
+  .page-nav a {
+    font-size: 16px;
+  }
+  
+  .page-nav .nav-divider {
+    margin: 0 5px;
+    height: 15px;
+  }
+  
+  /* Contact Page adjustments */
+  .contact-page .contact-container h1 {
+    font-size: 48pt;
+  }
+  
+  .contact-page .contact-container #form-wrapper {
+    top: calc(20% + 80px);
+    right: 10%;
+    width: 80%;
+    height: calc(100% - (20% + 80px));
+  }
+  
+  /* Biography Page adjustments */
+  #biography-page .header-container {
+    top: 20%;
+    right: 10%;
+    width: 80%;
+    align-items: center;
+    text-align: center;
+  }
+  
+  #biography-page .header-container h1 {
+    font-size: 48pt;
+  }
+  
+  #biography-page .bio-content {
+    top: calc(20% + 80px);
+    left: 10%;
+    width: 80%;
+    padding: 10px;
+    font-size: 16pt;
+  }
+  
+  /* Optionally adjust arrow sizes if needed */
+  .arrow {
+    width: 80px;
+    height: 80px;
+  }
+}
