@@ -54,6 +54,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   z-index: 4;
   padding-left: 5%;
+  padding-top: 1rem; 
   /* Scalable font size: never below 32px, scales with viewport up to 72px */
   font-size: clamp(var(--heading-min), var(--heading-scale), var(--heading-max));
 }
@@ -622,17 +623,17 @@ footer {
 /* Mobile (Column View) – Use dynamic scaling */
 @media screen and (max-width: 768px) {
   footer {
-    padding: calc(1rem + 1vw); 
-    font-size: clamp(12px, 1.5vw, 16px);
+    padding: 0.8rem; /* Reduced padding */
+    font-size: 12px; /* Slightly smaller font size */
   }
   
   .footer-logos {
-    gap: calc(1rem + 1vw);
-    margin-top: calc(1rem + 0.5vw);
+    gap: 0.5rem; /* Smaller gap between images */
+    margin-top: 0.8rem; /* Reduced top margin */
   }
   
   .footer-logos img {
-    max-width: 80px; /* Slightly smaller images for mobile */
+    max-width: 60px; /* Smaller images to prevent truncation */
   }
 }
 
@@ -724,5 +725,12 @@ footer {
   .arrow {
     width: 80px;
     height: 80px;
+  }
+}
+/* Column view (mobile) - scale arrows to 60% of desktop size */
+@media screen and (max-width: 768px) {
+  .arrow {
+    width: calc(100px * 0.6);
+    height: calc(100px * 0.6);
   }
 }
