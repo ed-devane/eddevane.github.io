@@ -1,41 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon - Ed Devane</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background: url('images/background.jpg') no-repeat center center/cover;
-            color: white;
-            text-align: center;
-        }
-        .container {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px 40px;
-            border-radius: 10px;
-        }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 1.2em;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio of Irish Sound Artist Ed Devane</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-    <div class="container">
-        <h1>Website Coming Soon</h1>
-        <p>Stay tuned! Something exciting is in the works.</p>
+  <!-- The numbered nav remains hidden by our CSS -->
+  <nav>
+    <a href="#section1">1</a>
+    <a href="#section2">2</a>
+    <a href="#section3">3</a>
+    <a href="#section4">4</a>
+    <a href="#section5">5</a>
+    <a href="#section6">6</a>
+    <a href="#section7">7</a>
+    <a href="#section8">8</a>
+    <a href="#section9">9</a>
+  </nav>
+
+  <section id="section0">
+    <div class="section0-image top bg-cover"></div>
+    
+    <!-- Header container: Navigation goes first -->
+    <div class="header-container">
+      <nav class="page-nav">
+        <a href="biography.html">Biography</a>
+        <span class="nav-divider"></span>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <h1>Ed Devane</h1>
+      <h2>Sound Artist</h2>
     </div>
+    
+    <div class="arrow arrow-down" onclick="scrollToNext(this)">↓</div>
+  </section>
+
+  
+  
+  <section id="section1">
+    <div class="section-overlay"></div> <!-- Overlay inside section -->
+    <div class="arrow arrow-down" onclick="scrollToNext(this)">↓</div>
+    <div class="arrow arrow-up" onclick="scrollToPrev(this)">↑</div>
+
+    <h1>Creativity</h1>
+    <p>When being creative, I am lost in the moment. With the work I make and share with others, I want to bring
+      them to that carefree space, if even for a short while. My creative output takes many forms, from music
+      performance to interactive sound installation, to instrument design and workshop facilitation.
+      <br><br>
+    </p>
+    <p>I describe myself as a sound artist, but within that, my day to day practice is perhaps closer in nature to
+      that of an engineer: working with code, electronics, mechanisms, fabrication and CAD. These are the
+      necessary means to an end in the creative journey I have led over the past 15 years or more.
+      <br><br>
+    </p>
+    <p>The end is always the creation of music, which since humans started banging rocks together to make
+      sound has been an abstract and technological medium that reaches deep into our souls and tells us who we
+      are, in a language without words.
+    </p>
+  </section>
+  <section id="section2">
+    <div class="section-overlay"></div> <!-- Overlay inside section -->
+    <div class="arrow arrow-down" onclick="scrollToNext(this)">↓</div>
+    <div class="arrow arrow-up" onclick="scrollToPrev(this)">↑</div>
+
+    <h2>Collaboration</h2>
+    <p>Where: RAMP experimental music festival Rathmullan <br></p>
+    <p>When: 2023 <br></p>
+    <p>Synopsis: An engagement with the local primary school culminating in a performance. I worked with 40
+      students investigating sound design and performance techniques. I used the sounds they made to compose the
+      music for the performance, and was joined by 15 of the pupils who played my instruments during the set.
+    </p><br>
+    <p>Relevance: As one of the first truly collaborative commissions I have undertaken with young people, the
+      experience gained with this and other one-off projects will inform the development of future works.
+    </p>
+  </section>
+  <section id="section3">
+    <div class="section-overlay"></div> <!-- Overlay inside section -->
+    <div class="arrow arrow-down" onclick="scrollToNext(this)">↓</div>
+    <div class="arrow arrow-up" onclick="scrollToPrev(this)">↑</div>
+
+    <h3>Audience Interaction</h3>
+    <p>Where: Wires, Strings and Other Things music theatre show, The Ark, Dublin</p><br>
+    <p>When: 2022</p>
+    <p>Synopsis: As part of a trio of musicians, I was largely responsible for audience interaction through picking
+      volunteers to control the musicians via a light interface, recording their sounds with a microphone, and
+      walking around the audience to create alternately lighthearted and introspective moods.
+    </p><br>
+    <p>Relevance: Under the tutelage of composer Brian Irvine, the show gave me valuable experience as a performer and facilitator, gaining insight into how a
+      project is conceptualised and fleshed out over time by a multidisciplinary team.
+    </p>
+  </section>
+  <section id="section4">
+    <div class="section-overlay"></div> <!-- Overlay inside section -->
+    <div class="arrow arrow-down" onclick="scrollToNext(this)">↓</div>
+    <div class="arrow arrow-up" onclick="scrollToPrev(this)">↑</div>
+
+    <h4>Electronics</h4>
+    <p>Where: National College of Art & Design, University Limerick, current arts practice</p><br>
+    <p>When: 2016 - 2018, 2018 - 2019, 2019 - present</p><br>
+    <p>Synopsis: Interaction design, physical computing, and developing electronic circuit boards in relation to
+      music performance have long been part of my repertoire. In my roles in 3rd level education I developed
+      modular physical computing tools to simplify interaction design in the real world, building a technological
+      fluency that informs my practice to this day.
+    </p><br>
+    <p>Relevance: I see electronic-based instruments as the ideal medium in which to create inclusive and immersive live music experiences. Complexity can be hidden behind simple and intuitive interface design. Modularity
+      and programmability allow participants degrees of customisation and exposure to the underlying technology.
+    </p>
+  </section>
+  <section id="section5">
+    <div class="section-overlay"></div> <!-- Overlay inside section -->
+    <div class="arrow arrow-down" onclick="scrollToNext(this)">↓</div>
+    <div class="arrow arrow-up" onclick="scrollToPrev(this)">↑</div>
+
+    <h5>Performance</h5>
+    <p>Where: Culture Night 2024 Letterkenny / Middlesbrough Sonic Arts Week 2025</p><br>
+    <p>When: 2024 - present</p><br>
+    <p>Synopsis: Given a blank slate commission for a local arts festival, I built a battery powered speaker
+      backpack and an LED helmet that lights up in sequence with the music. As it is self-contained and mobile, I
+      can perform wherever I can walk or fit in (the headpiece is quite wide).
+    </p><br>
+    <p>Relevance: The conceptual approach of making sounding elements mobile rather than static and stage based has long been a feature of my solo music performances. Movement, choreography and architectural space become important components, and the element of
+      surprise for the audience ensure dynamic experiences.
+    </p>
+  </section>
+  <section id="section6">
+    <div class="section-overlay"></div> <!-- Overlay inside section -->
+    <div class="arrow arrow-down" onclick="scrollToNext(this)">↓</div>
+    <div class="arrow arrow-up" onclick="scrollToPrev(this)">↑</div>
+
+    <h5>Design</h5>
+    <p>Where: my brain &gt; notebook<br>
+      When: ongoing<br>
+      Synopsis: for me the design process always begins with sketches on paper, where I can figure out various
+      aspects of feasibility, materials, fabrication methods, usability and more. A sizeable amount of my
+      day-to-day creative practice is spent in this space.
+    </p>
+    <p>Relevance: Educational frameworks, musical parameters, code, instrument building, facilitation approaches and more rely on careful
+      planning, conceptual development and research. Time spent with the notebook is essential to any new work.
+    </p>
+  </section>
+  <section id="section8">
+    <div class="section-overlay"></div> <!-- Overlay inside section -->
+    <div class="arrow arrow-down" onclick="scrollToNext(this)">↓</div>
+    <div class="arrow arrow-up" onclick="scrollToPrev(this)">↑</div>
+
+    <h5>Documenting</h5>
+    <p>Where: this website<br></p>
+    <p>When: ongoing<br></p>
+    <p>For many years my personal website has been a portfolio site with little traffic or updating. I will turn this into a repository for the various outputs of my research and development of music projects, code development and fabrication techniques. Usually I keep notes in paper form but will do so digitally to keep all relevant materials in one place - design files, code, framework document drafts, audio and video recordings, and blog posts that contextualise the data to time and activity.<br></p>
+    <p>Relevance: From the standpoint of learning from the past, documentation is essential. Many details get lost in human memory after even short periods of time, so documenting thought processes, design iterations, user feedback and audio-visual recordings provide an archive that can be mined for useful data when it comes to bringing the research into more concrete stages.
+    </p>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const sections = document.querySelectorAll("section");
+
+      function scrollToSection(offset) {
+        let currentSection = document.querySelector(".current-section") || sections[0];
+        let index = Array.from(sections).indexOf(currentSection);
+
+        let targetIndex = index + offset;
+        if (targetIndex >= 0 && targetIndex < sections.length) {
+          sections[targetIndex].scrollIntoView({ behavior: "smooth", block: "start" });
+
+          // Remove 'current-section' class from previous section and add it to new one
+          sections.forEach(section => section.classList.remove("current-section"));
+          sections[targetIndex].classList.add("current-section");
+        }
+      }
+
+      document.querySelectorAll(".arrow-down").forEach(arrow => {
+        arrow.addEventListener("click", function () {
+          scrollToSection(1); // Move to next section
+        });
+      });
+
+      document.querySelectorAll(".arrow-up").forEach(arrow => {
+        arrow.addEventListener("click", function () {
+          scrollToSection(-1); // Move to previous section
+        });
+      });
+
+      // Mark the first section as active initially
+      sections[0].classList.add("current-section");
+    });
+  </script>
+
+<footer>
+    <div class="footer-supported">Supported by</div>
+    <div class="footer-logos">
+      <a href="https://www.artscouncil.ie/home/" target="_blank">
+        <img src="images/logo1.gif" alt="Funding Body 1">
+      </a>
+      <a href="https://ealain.ie/" target="_blank">
+        <img src="images/logo2.jpg" alt="Funding Body 2">
+      </a>
+      <a href="https://www.musicnetwork.ie/what-we-do/music-capital-scheme" target="_blank">
+        <img src="images/logo3.png" alt="Funding Body 3">
+      </a>
+      <a href="https://www.donegalculture.ie/en/services/arts" target="_blank">
+        <img src="images/logo4.png" alt="Funding Body 4">
+      </a>
+    </div>
+  </footer>
+  
+  
 </body>
+
 </html>

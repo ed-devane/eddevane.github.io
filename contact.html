@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact - Ed Devane</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="contact-page">
+  <section id="section-contact">
+    <div class="contact-container">
+      <!-- Header Container with Navigation above and h1 with arrow -->
+      <div class="header-container">
+        <nav class="page-nav">
+          <a href="index.html">Home</a>
+          <span class="nav-divider"></span>
+          <a href="biography.html">Biography</a>
+        </nav>
+        <h1 id="contact-heading">
+          <a href="#" id="contact-link">&rarr;  contact</a>
+        </h1>
+      </div>
+      
+      <!-- Form Wrapper for Google Form -->
+      <div id="form-wrapper">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfvzC3atXy2sJqZOnRJeFPCr7bDpNgi_N0QF5XaLjQF0F71Mg/viewform?embedded=true" 
+                frameborder="0" marginheight="0" marginwidth="0">
+          Loading…
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const contactLink = document.getElementById('contact-link');
+      const heading = document.getElementById('contact-heading');
+      const formWrapper = document.getElementById('form-wrapper');
+
+      // Initially hide the form
+      formWrapper.style.opacity = 0;
+      formWrapper.style.display = 'none';
+
+      contactLink.addEventListener('click', function(e){
+        e.preventDefault();
+        // Fade out the heading
+        heading.style.transition = 'opacity 1s ease';
+        heading.style.opacity = 0;
+        // After fade-out, hide the heading and show the form
+        setTimeout(function(){
+          heading.style.display = 'none';
+          formWrapper.style.display = 'block';
+          // Force reflow so the transition applies
+          void formWrapper.offsetWidth;
+          formWrapper.style.transition = 'opacity 1s ease';
+          formWrapper.style.opacity = 1;
+        }, 1000);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,30 +1,495 @@
-/* Temporary Stylesheet for Coming Soon Page */
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    color: white;
-    text-align: center;
+  font-family: Arial, sans-serif;
 }
 
-.container {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 20px 40px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+/* Global Helper for Backgrounds */
+.bg-cover {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
 }
 
-h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
-
+/* Global Paragraph Styles */
 p {
-    font-size: 1.2em;
+  font-family: Arial, sans-serif;
+  font-size: clamp(16px, 2vw, 20px);
+  text-align: left;
+  margin-top: 10px;
+  color: white;
+  max-width: 50%;
+  position: relative;
+  z-index: 4;
+  padding-left: 5%;
+}
+
+/* Global Heading Styles */
+h1, h2, h3, h4, h5, h6 {
+  font-size: 72pt;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: left;
+  color: white;
+  position: relative;
+  z-index: 4;
+  padding-left: 5%;
+}
+
+/* Section Styles (all sections full viewport height) */
+section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Show arrows only on section hover */
+section:hover .arrow {
+  opacity: 1;
+}
+
+/* === SECTION 0 (Home) === */
+#section0 {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+/* Background image for section0 */
+.section0-image.top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url('../images/section0a.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  z-index: 0;
+}
+
+/* Colored Overlay (if used) */
+.section-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  opacity: 0.8;
+  z-index: 2;
+}
+
+/* Header Container for Home, Contact, & Biography */
+.header-container {
+  position: absolute;
+  top: 30%;
+  right: 5%;
+  width: 40%;    /* Adjust as needed for your design */
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* All children left aligned */
+  text-align: left;
+}
+
+.header-container h1 {
+  font-size: 72pt;
+  color: #36848a;
+  margin: 0 0 10px 0;
+}
+
+.header-container h2 {
+  font-size: 48pt;
+  color: #0c1b1c;
+  margin: 0 0 20px 0;
+}
+
+/* Main Navigation inside Header Container on Home */
+.header-container .main-nav {
+  margin-top: 180px;       /* Adjust spacing as needed */
+  align-self: flex-start;  /* Left-align nav within container */
+  width: 100%;
+  text-align: right;
+}
+body > nav {
+  display: none !important;
+}
+
+.header-container .main-nav a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #0c1b1c;
+  padding: 0 10px;
+  display: inline-block;
+}
+
+.header-container .nav-divider {
+  display: inline-block;
+  width: 1px;
+  background: #ccc;
+  height: 20px;
+  vertical-align: middle;
+  margin: 0 10px;
+}
+.header-container .page-nav {
+  align-self: flex-start;  /* Align nav to the left of the container */
+  text-align: left;
+  margin-bottom: 10px;      /* Adjust spacing between nav and h1 */
+  width: 100%;
+}
+/* Remove any redundant main-nav rules from earlier versions */
+
+
+/* Navigation Arrows */
+.arrow {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  background: transparent;
+  cursor: pointer;
+  z-index: 100;
+  border: none;
+  overflow: hidden;
+  text-indent: -9999px;
+  font-size: 0;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 1s ease;
+}
+
+.arrow::before {
+  content: none !important;
+}
+
+.arrow-down {
+  bottom: 20px;
+  right: 20px;
+  background-image: url('../images/arrow-down.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.arrow-up {
+  top: 20px;
+  right: 20px;
+  background-image: url('../images/arrow-up.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* === CONTACT PAGE === */
+.contact-page {
+  height: 100vh;
+  background-image: url('../images/contact.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+
+.contact-page .contact-container {
+  position: relative;
+  width: 100%;
+  height: 900px;
+}
+/* Display header navigation (page-nav) in our header containers */
+/* Navigation styling inside header container */
+.page-nav {
+  margin-bottom: 10px;       /* Adjust spacing between nav and h1 */
+  align-self: flex-start;    /* Ensures nav is left aligned */
+  width: 100%;
+  text-align: left;
+  padding-left: 30px;
+}
+
+.page-nav a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #0c1b1c !important;  /* Force desired color on all pages */
+  padding: 0 10px;
+  display: inline-block;
+}
+
+.page-nav .nav-divider {
+  display: inline-block;
+  width: 1px;
+  background: #ccc;
+  height: 20px;
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+
+/* --- Specific Overrides for Contact Page --- */
+
+
+/* === CONTACT PAGE BACKGROUND === */
+.contact-page {
+  height: 100vh;
+  background-image: url('../images/contact.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+
+/* Ensure the contact container fills the page */
+.contact-page .contact-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Header Container for Contact (same as on Home & Biography) */
+.contact-page .header-container {
+  position: absolute;
+  top: 30%;
+  right: 5%;
+  width: 40%;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Ensure both nav and h1 align left */
+  text-align: left;
+}
+
+.contact-page .header-container h1 {
+  font-size: 72pt;
+  color: #36848a;
+  margin: 0 0 10px 0;
+  /* Remove any previous alignment override */
+  align-self: flex-start;
+}
+
+/* Navigation in header container */
+.contact-page .page-nav {
+  margin-bottom: 10px;
+  align-self: flex-start;
+  width: 100%;
+  text-align: left;
+  padding-left: 20px;  /* Adjust left padding if needed */
+}
+
+.contact-page .page-nav a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #0c1b1c !important;
+  padding: 0 10px;
+  display: inline-block;
+}
+
+.contact-page .page-nav .nav-divider {
+  display: inline-block;
+  width: 1px;
+  background: #ccc;
+  height: 20px;
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+/* Contact Page h1 styling with a right-pointing arrow */
+/* Add a pseudo-element to insert a > symbol before the h1 text */
+
+
+.contact-page .header-container h1::before {
+ 
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Ensure the h1 link does not get default link styling */
+.contact-page .header-container h1 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Form Wrapper positioning on Contact Page */
+/* Position it below the header container */
+.contact-page .contact-container #form-wrapper {
+  position: absolute;
+  right: 5%;
+  top: calc(30% + 120px);  /* Adjust this value to leave space for header (h1 plus nav) */
+  width: 45%;
+  height: calc(100% - (30% + 120px));
+  border: none;
+}
+
+.contact-page .contact-container #form-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+/* === BIOGRAPHY PAGE === */
+#biography-page {
+  background-image: url('../images/biog.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* For the Biography page, re-use the same header container styling */
+#biography-page .header-container {
+  position: absolute;
+  top: 30%;
+  right: 5%;
+  width: 40%;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+
+#biography-page .header-container h1 {
+  font-size: 72pt;
+  color: #36848a;
+  margin: 0 0 10px 0;
+}
+
+/* Page navigation for Biography (if used) */
+#biography-page .page-nav {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+#biography-page .page-nav a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #0c1b1c;
+  padding: 0 10px;
+  display: inline-block;
+}
+
+#biography-page .page-nav .nav-divider {
+  display: inline-block;
+  width: 1px;
+  background: #ccc;
+  height: 20px;
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+/* Biography Content Container */
+#biography-page .bio-content {
+  position: absolute;
+  top: calc(30% + 150px);  /* Increase the offset so content is below the header */
+  left: calc(100% - 15% - 33%);  /* Aligns left edge with header container's left edge (55%) */
+  width: 66%;
+  padding: 20px 10px 20px 40px;
+  box-sizing: border-box;
+  background: transparent; /* Remove opaque background */
+  border-radius: 0;       /* Remove border radius */
+  color: #333333;
+  font-size: 18pt;
+  line-height: 1.6;
+  z-index: 50;
+}
+
+#biography-page .bio-content p {
+  color: #333333;
+}
+
+/* === Other Section Backgrounds (Sections 1-9) === */
+#section1::before,
+#section2::before,
+#section3::before,
+#section4::before,
+#section5::before,
+#section6::before,
+#section7::before,
+#section8::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
+}
+
+#section1::before { background-image: url('../images/section1.jpg'); }
+#section2::before { background-image: url('../images/section2.jpg'); }
+#section3::before { background-image: url('../images/section3.jpg'); }
+#section4::before { background-image: url('../images/section4.jpg'); }
+#section5::before { background-image: url('../images/section5.jpg'); }
+#section6::before { background-image: url('../images/section6.jpg'); }
+#section7::before { background-image: url('../images/section7.jpg'); }
+#section8::before { background-image: url('../images/section8.jpg'); }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #333;
+  color: #fff;
+  font-size: 14px;
+}
+.section-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* default translucent black */
+  opacity: 0.8;
+  z-index: 2;
+}
+#section1 .section-overlay { background-color: rgba(26, 26, 46, 0.8); }   /* Hex #1a1a2e */
+#section2 .section-overlay { background-color: rgba(22, 33, 62, 0.8); }   /* Hex #16213e */
+#section3 .section-overlay { background-color: rgba(15, 52, 96, 0.8); }   /* Hex #0f3460 */
+#section4 .section-overlay { background-color: rgba(83, 53, 74, 0.8); }   /* Hex #53354a */
+#section5 .section-overlay { background-color: rgba(44, 44, 84, 0.8); }   /* Hex #2c2c54 */
+#section6 .section-overlay { background-color: rgba(106, 5, 114, 0.8); }  /* Hex #6a0572 */
+#section7 .section-overlay { background-color: rgba(50, 14, 59, 0.8); }   /* Hex #320e3b */
+#section8 .section-overlay { background-color: rgba(27, 27, 47, 0.8); }   /* Hex #1b1b2f */
+#section9 .section-overlay { background-color: rgba(51, 51, 51, 0.8); }   /* Hex #333333 */
+
+
+footer {
+  background: #333;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.footer-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;  /* Space between logos */
+}
+
+.footer-logos img {
+  max-width: 100px; /* Adjust as needed */
+  height: auto;
+  filter: grayscale(100%);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.footer-logos img:hover {
+  opacity: 1;
+  filter: none;
 }
