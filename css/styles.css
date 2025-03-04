@@ -20,12 +20,23 @@ body {
   background-position: top center;
 }
 
+/* Define CSS variables for consistency and easy adjustments */
+:root {
+  --base-font-size: 16px;
+  --para-max: 20px;
+  --heading-min: 55px;
+  --heading-max: 72px;
+  --heading-scale: 6vw;
+  --section-padding: 2vw;
+}
+
 /* Global Paragraph Styles */
 p {
   font-family: Arial, sans-serif;
-  font-size: clamp(16px, 2vw, 20px);
+  /* Clamp between base (16px), a dynamic scale (2vw) and a maximum (20px) */
+  font-size: clamp(var(--base-font-size), 2vw, var(--para-max));
   text-align: left;
-  margin-top: 10px;
+  margin-top: 0.625rem;  /* roughly 10px if base font-size is 16px */
   color: white;
   max-width: 50%;
   position: relative;
@@ -35,25 +46,116 @@ p {
 
 /* Global Heading Styles */
 h1, h2, h3, h4, h5, h6 {
-  font-size: 72pt;
   font-family: Arial, sans-serif;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;  /* roughly 20px */
   text-align: left;
   color: white;
   position: relative;
   z-index: 4;
   padding-left: 5%;
+  /* Scalable font size: never below 32px, scales with viewport up to 72px */
+  font-size: clamp(var(--heading-min), var(--heading-scale), var(--heading-max));
 }
 
 /* Section Styles (all sections full viewport height) */
 section {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: auto; /* Remove fixed height */
+  min-height: calc(var(--vh, 1vh) * 100); /* Use dynamic viewport height */
   overflow: hidden;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+}
+
+
+
+/* Base layout for the section content */
+
+
+/* Specific section adjustments for #section0 */
+#section0 h1 {
+  color: #36848a !important;
+}
+
+#section0 h2 {
+  color: #151b1b !important;
+  /* Instead of a fixed 40pt, using clamp to allow dynamic resizing */
+  font-size: clamp(32px, 6vw, 40px);
+}
+
+/* Desktop layout: image on left, text on right */
+.section0-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem; /* Space between image and text */
+  padding: 20px;
+}
+
+/* Image container with flexible sizing */
+.section0-content .image {
+  flex: 0 1 40%; /* Basis: 40% width */
+  max-width: 40%;
+}
+
+/* Make the image scale responsively */
+.section0-content .image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Text container: left-aligned for row view */
+.section0-content .text {
+  flex: 1;
+  padding-left: 5%;
+  text-align: left;
+}
+
+/* Mobile layout: image on top, text below, full width & justified text */
+@media (max-width: 768px) {
+  .section0-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .section0-content .image {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .section0-content .text {
+    padding-left: 0;
+    margin-top: 1rem;
+    text-align: justify;
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  section p {
+    max-width: 100%;
+    padding: 0 2rem; 
+    text-align: justify;
+  }
+}
+
+
+/* Portrait mode: image on top, text below */
+@media (orientation: portrait) {
+  .section0-content {
+    flex-direction: column;
+  }
+  .section0-content .image {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .section0-content .text {
+    width: 100%;
+  }
 }
 
 /* Show arrows only on section hover */
@@ -62,12 +164,18 @@ section:hover .arrow {
 }
 
 /* === SECTION 0 (Home) === */
-#section0 {
+
+
+#section0,
+#biography-page,
+.contact-page {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: auto !important;
+  min-height: calc(var(--vh, 1vh) * 100) !important;
   overflow: hidden;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 /* Background image for section0 */
@@ -76,24 +184,22 @@ section:hover .arrow {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   background-image: url('../images/section0a.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
   z-index: 0;
+  
+}
+
+img.responsive {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Colored Overlay (if used) */
-.section-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  opacity: 0.8;
-  z-index: 2;
-}
+
 
 /* Header Container for Home, Contact, & Biography */
 .header-container {
@@ -108,11 +214,7 @@ section:hover .arrow {
   text-align: left;
 }
 
-.header-container h1 {
-  font-size: 72pt;
-  color: #36848a;
-  margin: 0 0 10px 0;
-}
+
 
 .header-container h2 {
   font-size: 48pt;
@@ -192,10 +294,30 @@ body > nav {
   background-repeat: no-repeat;
   background-position: center;
 }
+section {
+  position: relative;
+  width: 100%;
+  height: auto; /* Remove fixed height */
+  min-height: calc(var(--vh, 1vh) * 100); /* Use dynamic viewport height */
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+#section0,
+#biography-page,
+.contact-page {
+  position: relative;
+  width: 100%;
+  height: auto !important;
+  min-height: calc(var(--vh, 1vh) * 100) !important;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
 
 /* === CONTACT PAGE === */
 .contact-page {
-  height: 100vh;
+ 
   background-image: url('../images/contact.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -240,11 +362,22 @@ body > nav {
 
 /* === CONTACT PAGE BACKGROUND === */
 .contact-page {
-  height: 100vh;
+
   background-image: url('../images/contact.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
+}
+#section0,
+#biography-page,
+.contact-page {
+  position: relative;
+  width: 100%;
+  height: auto !important;
+  min-height: calc(var(--vh, 1vh) * 100) !important;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 /* Ensure the contact container fills the page */
@@ -267,13 +400,6 @@ body > nav {
   text-align: left;
 }
 
-.contact-page .header-container h1 {
-  font-size: 72pt;
-  color: #36848a;
-  margin: 0 0 10px 0;
-  /* Remove any previous alignment override */
-  align-self: flex-start;
-}
 
 /* Navigation in header container */
 .contact-page .page-nav {
@@ -341,7 +467,7 @@ body > nav {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
-  height: 100vh;
+
   overflow: hidden;
 }
 
@@ -359,11 +485,7 @@ body > nav {
 }
 
 
-#biography-page .header-container h1 {
-  font-size: 72pt;
-  color: #36848a;
-  margin: 0 0 10px 0;
-}
+
 
 /* Page navigation for Biography (if used) */
 #biography-page .page-nav {
@@ -451,11 +573,11 @@ footer {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* default translucent black */
-  opacity: 0.8;
+  height: calc(var(--vh, 1vh) * 100);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
 }
+
 #section1 .section-overlay { background-color: rgba(26, 26, 46, 0.8); }   /* Hex #1a1a2e */
 #section2 .section-overlay { background-color: rgba(22, 33, 62, 0.8); }   /* Hex #16213e */
 #section3 .section-overlay { background-color: rgba(15, 52, 96, 0.8); }   /* Hex #0f3460 */
@@ -503,11 +625,24 @@ footer {
     text-align: center;
   }
   
-  .header-container h1 {
+  /* .header-container h1 {
     font-size: 48pt;
     margin-bottom: 5px;
-  }
+  } */
   
+  /* For Biography and Contact header h1 */
+#biography-page .header-container h1,
+.contact-page .header-container h1 {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  position: relative;
+  z-index: 50;
+  /* Scalable font size: same parameters as above, adjust if desired */
+  font-size: clamp(40px, 6vw, 72px);
+  color: #36848a; /* Use your desired header color */
+}
+
   .header-container h2 {
     font-size: 32pt;
     margin-bottom: 10px;
