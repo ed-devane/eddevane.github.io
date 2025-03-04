@@ -588,23 +588,26 @@ footer {
 #section8 .section-overlay { background-color: rgba(27, 27, 47, 0.8); }   /* Hex #1b1b2f */
 #section9 .section-overlay { background-color: rgba(51, 51, 51, 0.8); }   /* Hex #333333 */
 
-
+/* Desktop (Row View) – Keep original, fixed sizes */
 footer {
-  background: #333;
+  width: 100%;
   padding: 20px;
+  background: #333;
   text-align: center;
   color: #fff;
+  font-size: 14px;
 }
 
 .footer-logos {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;  /* Space between logos */
+  gap: 20px;
+  margin-top: 20px;
 }
 
 .footer-logos img {
-  max-width: 100px; /* Adjust as needed */
+  max-width: 100px;
   height: auto;
   filter: grayscale(100%);
   opacity: 0.8;
@@ -615,6 +618,24 @@ footer {
   opacity: 1;
   filter: none;
 }
+
+/* Mobile (Column View) – Use dynamic scaling */
+@media screen and (max-width: 768px) {
+  footer {
+    padding: calc(1rem + 1vw); 
+    font-size: clamp(12px, 1.5vw, 16px);
+  }
+  
+  .footer-logos {
+    gap: calc(1rem + 1vw);
+    margin-top: calc(1rem + 0.5vw);
+  }
+  
+  .footer-logos img {
+    max-width: 80px; /* Slightly smaller images for mobile */
+  }
+}
+
 @media screen and (max-width: 768px) {
   /* Adjust the header container on all pages for mobile */
   .header-container {
