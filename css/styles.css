@@ -125,7 +125,7 @@
   width: 80px;         /* Wider hit area to trigger hover */
   opacity: 0;
   transition: opacity 0.5s ease;
-  z-index: 210;        /* Above the arrows, adjust if needed */
+  z-index: 1000;        /* Above the arrows, adjust if needed */
   text-align: center;
   cursor: pointer;
 }
