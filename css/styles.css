@@ -36,7 +36,7 @@
   p {
     font-family: Arial, sans-serif;
     font-size: clamp(var(--base-font-size), 2vw, var(--para-max));
-    text-align: justify;
+    text-align: left;
     margin-top: 0.625rem;
     color: white;
     max-width: 100%;
@@ -232,6 +232,9 @@
      SECTION 0 (HOME) STYLES
      ====================== */
   /* Custom Heading Overrides for Section0 */
+  #section0 {
+    position: relative;
+  }
   #section0 h1 {
     color: #36848a !important;
   }
@@ -244,34 +247,42 @@
     font-size: clamp(32px, 6vw, 40px);
   }
   
-  /* Section0 50/50 Layout */
-  .section0-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    padding: 20px;
-  }
-  .section0-content .image {
-    max-width: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  .section0-content .image img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    max-height: 90vh; /* Adjust this value as needed */
-    object-position: center center;
-  }
-  .section0-content .text {
-    width: 50%;
-    padding-left: 10;
-    text-align: left;
-  }
+  /* Make the section0 content container fill the viewport and use a 50/50 layout */
+.section0-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 20px;
+  min-height: 100vh;  /* ensure it fills the viewport */
+}
+
+/* Left column: Image container */
+.section0-content .image {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The image itself */
+.section0-content .image img {
+  width: 100%;
+  height: auto;
+  max-height: 90vh;  /* similar constraint as contact page */
+  object-fit: contain;
+  object-position: center center;
+}
+
+/* Right column: Text container */
+.section0-content .text {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
   
   /* Mobile adjustments for Section0 */
   @media (max-width: 768px) {
@@ -291,7 +302,7 @@
     section p {
       max-width: 100%;
       padding: 0 2rem;
-      text-align: justify;
+      text-align: left;
     }
   }
   @media (orientation: portrait) {
@@ -313,15 +324,16 @@
   /* Section0 Background Image */
   .section0-image.top {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 80%;
-    height: 80vh;
-    background-image: url('../images/section0a.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80vh;
+  background-image: url('../images/section0a.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  z-index: 0;
   }
   
   img.responsive {
@@ -419,12 +431,16 @@ section:hover .arrow {
   }
   #biography-page .biog-image-wrapper {
     width: 50%;
-    padding: 20px;
-    box-sizing: border-box;
+    display: flex;
+    padding:20px;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Make sure it fills the viewport */
   }
   #biography-page .biog-image {
     width: 100%;
     height: 100%;
+    
     background-image: url('../images/biog.jpg');
     background-size: contain;
     background-repeat: no-repeat;
@@ -433,7 +449,7 @@ section:hover .arrow {
 /* Biography Page Right Column (Text) – remove vertical centering */
 #biography-page .biog-text {
   width: 50%;
-  padding: 2rem;
+  padding: 1rem;
   box-sizing: border-box;
   background: #fff;
   color: #333;
@@ -510,9 +526,12 @@ section:hover .arrow {
 /* Left Column: Background Image */
 .contact-page .content .image {
   width: 50%;
-  /* Use the contact.jpg as a background image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;  /* Ensures it fills the viewport */
   background-image: url('../images/contact.jpg');
-  background-size: contain;  /* or cover if you prefer */
+  background-size: contain; /* or cover if preferred */
   background-repeat: no-repeat;
   background-position: center center;
 }

@@ -158,38 +158,56 @@
   </section>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const sections = document.querySelectorAll("section");
+document.addEventListener("DOMContentLoaded", function () {
+  const sections = document.querySelectorAll("section");
+  const upArrows = document.querySelectorAll(".arrow-up");
+  const downArrows = document.querySelectorAll(".arrow-down");
 
-      function scrollToSection(offset) {
-        let currentSection = document.querySelector(".current-section") || sections[0];
-        let index = Array.from(sections).indexOf(currentSection);
-
-        let targetIndex = index + offset;
-        if (targetIndex >= 0 && targetIndex < sections.length) {
-          sections[targetIndex].scrollIntoView({ behavior: "smooth", block: "start" });
-
-          // Remove 'current-section' class from previous section and add it to new one
-          sections.forEach(section => section.classList.remove("current-section"));
-          sections[targetIndex].classList.add("current-section");
-        }
-      }
-
-      document.querySelectorAll(".arrow-down").forEach(arrow => {
-        arrow.addEventListener("click", function () {
-          scrollToSection(1); // Move to next section
-        });
-      });
-
-      document.querySelectorAll(".arrow-up").forEach(arrow => {
-        arrow.addEventListener("click", function () {
-          scrollToSection(-1); // Move to previous section
-        });
-      });
-
-      // Mark the first section as active initially
-      sections[0].classList.add("current-section");
+  function updateArrowVisibility(currentIndex) {
+    // Hide up arrows if on the first section (index 0), show otherwise
+    upArrows.forEach(arrow => {
+      arrow.style.display = currentIndex === 0 ? "none" : "block";
     });
+  }
+
+  function scrollToSection(offset) {
+    let currentSection = document.querySelector(".current-section") || sections[0];
+    let index = Array.from(sections).indexOf(currentSection);
+    let targetIndex = index + offset;
+
+    // Wrap-around logic for down arrow only, if you need it
+    if (targetIndex < 0) {
+      targetIndex = sections.length - 1;
+    } else if (targetIndex >= sections.length) {
+      targetIndex = 0;
+    }
+
+    sections[targetIndex].scrollIntoView({ behavior: "smooth", block: "start" });
+    
+    sections.forEach(section => section.classList.remove("current-section"));
+    sections[targetIndex].classList.add("current-section");
+
+    // Update up arrow visibility after scrolling
+    updateArrowVisibility(targetIndex);
+  }
+
+  downArrows.forEach(arrow => {
+    arrow.addEventListener("click", function () {
+      scrollToSection(1); // Move to next section
+    });
+  });
+
+  upArrows.forEach(arrow => {
+    arrow.addEventListener("click", function () {
+      scrollToSection(-1); // Move to previous section
+    });
+  });
+
+  // Mark the first section as active initially and update arrow visibility
+  sections[0].classList.add("current-section");
+  updateArrowVisibility(0);
+});
+
   </script>
     <script>
 // Place this script in your HTML before the closing </body> tag or in an external JS file
