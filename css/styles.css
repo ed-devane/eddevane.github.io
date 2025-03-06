@@ -728,15 +728,18 @@ section:hover .arrow {
 }
 
 .social-links a img {
-  max-width: 60px; /* adjust the size of the Instagram logo as needed */
-  height: auto;
+ 
   transition: opacity 0.3s ease;
 }
 
 .social-links a img:hover {
   opacity: 0.8;
 }
-
+footer .social-links a img,
+footer .footer-logos a img {
+  height: 50px;  /* Set desired uniform height */
+  width: auto;   /* Maintain aspect ratio */
+}
   
   /* Mobile Footer Adjustments */
   @media screen and (max-width: 768px) {
