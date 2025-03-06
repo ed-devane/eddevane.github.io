@@ -8,28 +8,42 @@
 </head>
 <body class="contact-page">
   <section id="section-contact">
-    <div class="contact-container">
-      <!-- Header Container with Navigation above and h1 with arrow -->
-      <div class="header-container">
-        <nav class="page-nav">
-          <a href="index.html">Home</a>
-          <span class="nav-divider"></span>
-          <a href="biography.html">Biography</a>
-        </nav>
-        <h1 id="contact-heading">
-          <a href="#" id="contact-link">&rarr;  contact</a>
-        </h1>
-      </div>
-      
-      <!-- Form Wrapper for Google Form -->
-      <div id="form-wrapper">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfvzC3atXy2sJqZOnRJeFPCr7bDpNgi_N0QF5XaLjQF0F71Mg/viewform?embedded=true" 
-                frameborder="0" marginheight="0" marginwidth="0">
-          Loading…
-        </iframe>
+    <div class="content">
+      <!-- Left Column: Background Image Container -->
+      <div class="image"></div>
+      <!-- Right Column: Contact Content -->
+      <div class="text">
+        <div class="header-container">
+          <!-- Removed inline nav in favor of side arrow navigation -->
+          <h1 id="contact-heading">
+            <a href="#" id="contact-link">&rarr; contact</a>
+          </h1>
+        </div>
+        <div class="contact-container">
+          <div id="form-wrapper">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfvzC3atXy2sJqZOnRJeFPCr7bDpNgi_N0QF5XaLjQF0F71Mg/viewform?embedded=true" 
+                    frameborder="0" marginheight="0" marginwidth="0">
+              Loading…
+            </iframe>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- New side arrow navigation -->
+  <div class="side-arrow-container left-arrow">
+    <a href="index.html">
+      <img src="images/arrow-left.png" alt="Home">
+      <div class="arrow-text">Home</div>
+    </a>
+  </div>
+  <div class="side-arrow-container right-arrow">
+    <a href="biography.html">
+      <img src="images/arrow-right.png" alt="Biography">
+      <div class="arrow-text">Biography</div>
+    </a>
+  </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function(){
@@ -43,14 +57,12 @@
 
       contactLink.addEventListener('click', function(e){
         e.preventDefault();
-        // Fade out the heading
         heading.style.transition = 'opacity 1s ease';
         heading.style.opacity = 0;
-        // After fade-out, hide the heading and show the form
         setTimeout(function(){
           heading.style.display = 'none';
           formWrapper.style.display = 'block';
-          // Force reflow so the transition applies
+          // Force reflow
           void formWrapper.offsetWidth;
           formWrapper.style.transition = 'opacity 1s ease';
           formWrapper.style.opacity = 1;

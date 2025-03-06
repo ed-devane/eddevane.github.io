@@ -1,292 +1,387 @@
-/* Global Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: Arial, sans-serif;
-}
-
-/* Global Helper for Backgrounds */
-.bg-cover {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top center;
-}
-
-/* Define CSS variables for consistency and easy adjustments */
-:root {
-  --base-font-size: 16px;
-  --para-max: 20px;
-  --heading-min: 55px;
-  --heading-max: 72px;
-  --heading-scale: 6vw;
-  --section-padding: 2vw;
-}
-
-/* Global Paragraph Styles */
-p {
-  font-family: Arial, sans-serif;
-  /* Clamp between base (16px), a dynamic scale (2vw) and a maximum (20px) */
-  font-size: clamp(var(--base-font-size), 2vw, var(--para-max));
-  text-align: left;
-  margin-top: 0.625rem;  /* roughly 10px if base font-size is 16px */
-  color: white;
-  max-width: 50%;
-  position: relative;
-  z-index: 4;
-  padding-left: 5%;
-}
-
-/* Global Heading Styles */
-h1, h2, h3, h4, h5, h6 {
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-  margin-bottom: 1.25rem;  /* roughly 20px */
-  text-align: left;
-  color: white;
-  position: relative;
-  z-index: 4;
-  padding-left: 5%;
-  padding-top: 1rem; 
-  /* Scalable font size: never below 32px, scales with viewport up to 72px */
-  font-size: clamp(var(--heading-min), var(--heading-scale), var(--heading-max));
-}
-
-/* Section Styles (all sections full viewport height) */
-section {
-  position: relative;
-  width: 100%;
-  height: auto; /* Remove fixed height */
-  min-height: calc(var(--vh, 1vh) * 100); /* Use dynamic viewport height */
-  overflow: hidden;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-
-
-/* Base layout for the section content */
-
-
-/* Specific section adjustments for #section0 */
-#section0 h1 {
-  color: #36848a !important;
-}
-
-#section0 h2 {
-  color: #151b1b !important;
-  /* Instead of a fixed 40pt, using clamp to allow dynamic resizing */
-  font-size: clamp(32px, 6vw, 40px);
-}
-
-/* Desktop layout: image on left, text on right */
-.section0-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem; /* Space between image and text */
-  padding: 20px;
-}
-
-/* Image container with flexible sizing */
-.section0-content .image {
-  flex: 0 1 40%; /* Basis: 40% width */
-  max-width: 40%;
-}
-
-/* Make the image scale responsively */
-.section0-content .image img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
-/* Text container: left-aligned for row view */
-.section0-content .text {
-  flex: 1;
-  padding-left: 5%;
-  text-align: left;
-}
-
-/* Mobile layout: image on top, text below, full width & justified text */
-@media (max-width: 768px) {
-  .section0-content {
-    flex-direction: column;
-    text-align: center;
+/* ======================
+   GLOBAL & BASE STYLES
+   ====================== */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
   
-  .section0-content .image {
-    flex: none;
-    width: 100%;
-    max-width: 100%;
+  html {
+    scroll-behavior: smooth;
   }
   
-  .section0-content .text {
-    padding-left: 0;
-    margin-top: 1rem;
-    text-align: justify;
-    width: 100%;
+  body {
+    font-family: Arial, sans-serif;
   }
-}
-@media (max-width: 768px) {
-  section p {
-    max-width: 100%;
-    padding: 0 2rem; 
-    text-align: justify;
+  
+  /* Global Helper for Backgrounds */
+  .bg-cover {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
   }
-}
+  
+  /* CSS Variables */
+  :root {
+    --base-font-size: 16px;
+    --para-max: 20px;
+    --heading-min: 55px;
+    --heading-max: 72px;
+    --heading-scale: 6vw;
+    --section-padding: 2vw;
+  }
+  
+  /* Global Paragraph Styles */
+  p {
+    font-family: Arial, sans-serif;
+    font-size: clamp(var(--base-font-size), 2vw, var(--para-max));
+    text-align: left;
+    margin-top: 0.625rem;
+    color: white;
+    max-width: 70%;
+    position: relative;
+    z-index: 4;
+    padding-left: 5%;
+  }
+  
+  /* Global Heading Styles */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    text-align: left;
+    color: white;
+    position: relative;
+    z-index: 4;
+    padding-left: 5%;
+    padding-top: 1rem;
+    font-size: clamp(var(--heading-min), var(--heading-scale), var(--heading-max));
+  }
+  
+  /* Global Anchor Styles */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
 
-/* Portrait mode: image on top, text below */
-@media (orientation: portrait) {
-  .section0-content {
-    flex-direction: column;
-  }
-  .section0-content .image {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  .section0-content .text {
-    width: 100%;
-  }
+/* Fixed Side Navigation (disappearing on hover) */
+.side-nav {
+  position: fixed;
+  top: 50%;               /* Halfway down the viewport */
+  transform: translateY(-50%);
+  opacity: 1 !important;             /* Hidden by default */
+  transition: opacity 0.5s ease;
+  z-index: 200;
+  background: rgba(255,255,255,0.8); /* Optional background for contrast */
+  padding: 10px 15px;
+  border-radius: 4px;
+  pointer-events: auto;   /* Ensure it can be hovered */
 }
 
-/* Show arrows only on section hover */
-section:hover .arrow {
+/* Fade in on hover */
+.side-nav:hover {
   opacity: 1;
 }
 
-/* === SECTION 0 (Home) === */
-
-
-#section0,
-#biography-page,
-.contact-page {
-  position: relative;
-  width: 100%;
-  height: auto !important;
-  min-height: calc(var(--vh, 1vh) * 100) !important;
-  overflow: hidden;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-/* Background image for section0 */
-.section0-image.top {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: calc(var(--vh, 1vh) * 100);
-  background-image: url('../images/section0a.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top center;
-  z-index: 0;
-  
-}
-
-img.responsive {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Colored Overlay (if used) */
-
-
-/* Header Container for Home, Contact, & Biography */
-.header-container {
-  position: absolute;
-  top: 30%;
-  right: 5%;
-  width: 40%;    /* Adjust as needed for your design */
-  z-index: 50;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* All children left aligned */
+/* Left-side nav positioned at the left edge */
+.left-nav {
+  left: 10px;   /* Adjust distance from left edge */
   text-align: left;
 }
 
-
-
-.header-container h2 {
-  font-size: 48pt;
-  color: #0c1b1c;
-  margin: 0 0 20px 0;
-}
-
-/* Main Navigation inside Header Container on Home */
-.header-container .main-nav {
-  margin-top: 180px;       /* Adjust spacing as needed */
-  align-self: flex-start;  /* Left-align nav within container */
-  width: 100%;
+/* Right-side nav positioned at the right edge */
+.right-nav {
+  right: 10px;  /* Adjust distance from right edge */
   text-align: right;
 }
-body > nav {
-  display: none !important;
-}
 
-.header-container .main-nav a {
-  text-decoration: none;
+/* Styling for the links inside the nav */
+.side-nav a {
+  font-family: Arial, sans-serif;
   font-size: 18px;
-  color: #0c1b1c;
-  padding: 0 10px;
+  color: #0c1b1c !important;
+  text-decoration: none;
   display: inline-block;
 }
 
-.header-container .nav-divider {
+/* Optionally, add a vertical divider if you want multiple links in one nav */
+.side-nav.left-nav a::after {
+  content: "";
   display: inline-block;
   width: 1px;
-  background: #ccc;
+  background-color: #ccc;
   height: 20px;
   vertical-align: middle;
-  margin: 0 10px;
+  margin-left: 10px;
 }
-.header-container .page-nav {
-  align-self: flex-start;  /* Align nav to the left of the container */
-  text-align: left;
-  margin-bottom: 10px;      /* Adjust spacing between nav and h1 */
-  width: 100%;
+
+/* New Side Arrow Navigation */
+.side-arrow-container {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80px;         /* Wider hit area to trigger hover */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 210;        /* Above the arrows, adjust if needed */
+  text-align: center;
+  cursor: pointer;
 }
-/* Remove any redundant main-nav rules from earlier versions */
 
+/* Create a round opaque underlay using a pseudo-element */
+.side-arrow-container::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90px;      /* Adjust size as needed */
+  height: 90px;     /* Adjust size as needed */
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(243, 239, 239, 0.959);  /* Opaque underlay color */
+  z-index: -1;      /* Place it behind the arrow image and text */
+}
 
-/* Navigation Arrows */
+/* Show the arrow when the container is hovered */
+.side-arrow-container:hover {
+  opacity: 1;
+}
+
+/* Position left/right containers */
+.left-arrow {
+  left: 10px;         /* Adjust distance from left edge */
+}
+.right-arrow {
+  right: 10px;        /* Adjust distance from right edge */
+}
+
+/* Arrow image styling */
+.side-arrow-container img {
+  width: 50px;         /* Adjust as necessary to match your custom arrow style */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Text styling below arrow */
+.arrow-text {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #0c1b1c;      /* Matching your link color */
+  margin-top: 5px;
+}
+/* Media query for column (mobile/portrait) view */
+@media screen and (max-width: 768px) {
+  .side-arrow-container {
+    top: 50vh; /* 50% of the viewport height */
+    transform: translateY(-50%);
+  }
+}
+
+  .section-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(var(--vh, 1vh) * 100);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+  }
+  
+  #section1 .section-overlay { background-color: rgba(26, 26, 46, 0.8); }
+  #section2 .section-overlay { background-color: rgba(22, 33, 62, 0.8); }
+  #section3 .section-overlay { background-color: rgba(15, 52, 96, 0.8); }
+  #section4 .section-overlay { background-color: rgba(83, 53, 74, 0.8); }
+  #section5 .section-overlay { background-color: rgba(44, 44, 84, 0.8); }
+  #section6 .section-overlay { background-color: rgba(106, 5, 114, 0.8); }
+  #section7 .section-overlay { background-color: rgba(50, 14, 59, 0.8); }
+  #section8 .section-overlay { background-color: rgba(27, 27, 47, 0.8); }
+  #section9 .section-overlay { background-color: rgba(51, 51, 51, 0.8); }
+  
+  /* Base Section Styles */
+  section {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: calc(var(--vh, 1vh) * 100);
+    overflow: hidden;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  
+  /* ======================
+     UNIVERSAL CONTAINERS (Section0, Biography, Contact)
+     ====================== */
+  .section0,
+  #biography-page,
+  .contact-page {
+    position: relative;
+    width: 100%;
+    height: auto !important;
+    min-height: calc(var(--vh, 1vh) * 100) !important;
+    overflow: hidden;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  
+  /* ======================
+     SECTION 0 (HOME) STYLES
+     ====================== */
+  /* Custom Heading Overrides for Section0 */
+  #section0 h1 {
+    color: #36848a !important;
+  }
+  #section0 .text h1 {
+    text-align: center; /* or center, right, etc., as desired */
+    /* Optionally add any padding or margin overrides here */
+  }
+  #section0 h2 {
+    color: #151b1b !important;
+    font-size: clamp(32px, 6vw, 40px);
+  }
+  
+  /* Section0 50/50 Layout */
+  .section0-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 20px;
+  }
+  .section0-content .image {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .section0-content .image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center center;
+  }
+  .section0-content .text {
+    width: 50%;
+    padding-left: 10;
+    text-align: left;
+  }
+  
+  /* Mobile adjustments for Section0 */
+  @media (max-width: 768px) {
+    .section0-content {
+      flex-direction: column;
+      text-align: center;
+    }
+    .section0-content .image,
+    .section0-content .text {
+      width: 100%;
+    }
+    .section0-content .text {
+      padding-left:0;
+      margin-top: 1rem;
+      text-align: justify;
+    }
+    section p {
+      max-width: 100%;
+      padding: 0 2rem;
+      text-align: justify;
+    }
+  }
+  @media (orientation: portrait) {
+    .section0-content {
+      flex-direction: column;
+    }
+    .section0-content .image {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .section0-content .image img {
+      width: 100%; /* Ensures the image fills its container */
+    }
+    .section0-content .text {
+      width: 100%;
+    }
+  }
+  
+  /* Section0 Background Image */
+  .section0-image.top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 80vh;
+    background-image: url('../images/section0a.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: 0;
+  }
+  
+  img.responsive {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* ======================
+     HEADER & NAVIGATION (Global)
+     ====================== */
+  .header-container {
+    /* For global header containers (used in Home, Biography, Contact) */
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+  }
+  .header-container h2 {
+    font-size: 48pt;
+    color: #0c1b1c;
+    margin-bottom: 10px;
+  }
+
+  /* body > nav {
+    display: none !important;
+  } */
+
+  #section0 .text h2 {
+    text-align: center !important; /* or center, right, etc., as desired */
+    /* Optionally add any padding or margin overrides here */
+  }
+
+  
+  /* Arrow Base Styles */
 .arrow {
   position: fixed;
   width: 100px;
   height: 100px;
   background: transparent;
   cursor: pointer;
-  z-index: 100;
+  z-index: 100;  /* Ensure arrows are on top */
   border: none;
   overflow: hidden;
   text-indent: -9999px;
   font-size: 0;
-  opacity: 0; /* Hidden by default */
+  opacity: 0;  /* Hidden by default */
   transition: opacity 1s ease;
 }
 
+/* Ensure any pseudo-content is removed */
 .arrow::before {
   content: none !important;
 }
 
+/* Arrow Down */
 .arrow-down {
   bottom: 20px;
   right: 20px;
   background-image: url('../images/arrow-down.png');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
+/* Arrow Up */
 .arrow-up {
   top: 20px;
   right: 20px;
@@ -295,189 +390,139 @@ body > nav {
   background-repeat: no-repeat;
   background-position: center;
 }
-section {
-  position: relative;
-  width: 100%;
-  height: auto; /* Remove fixed height */
-  min-height: calc(var(--vh, 1vh) * 100); /* Use dynamic viewport height */
-  overflow: hidden;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-#section0,
-#biography-page,
-.contact-page {
-  position: relative;
-  width: 100%;
-  height: auto !important;
-  min-height: calc(var(--vh, 1vh) * 100) !important;
-  overflow: hidden;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+
+/* Show arrows on hover of the section */
+section:hover .arrow {
+  opacity: 1;
 }
 
-/* === CONTACT PAGE === */
-.contact-page {
+/* Mobile Arrow Adjustments */
+@media screen and (max-width: 768px) {
+  .arrow {
+    width: calc(100px * 0.6);
+    height: calc(100px * 0.6);
+  }
+}
+
+  /* ======================
+     BIOGRAPHY PAGE SPECIFIC STYLES
+     ====================== */
+  /* The header (h1 + nav) is now inside the right column (.biog-text) */
+  #biography-page .biog-layout {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+  }
+  #biography-page .biog-image-wrapper {
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  #biography-page .biog-image {
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/biog.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+/* Biography Page Right Column (Text) – remove vertical centering */
+#biography-page .biog-text {
+  width: 50%;
+  padding: 2rem;
+  box-sizing: border-box;
+  background: #fff;
+  color: #333;
+  /* Remove vertical centering: */
+  display: block;
+}
+
+/* Position the header container within .biog-text consistently */
+#biography-page .biog-text .header-container {
+  text-align: center;
+  margin-top: 35vh; /* Positions the h1 at about half the viewport height */
+  margin-bottom: 2rem; /* Adds space between the h1 and the text content below */
+}
+
+/* The text content below flows normally */
+#biography-page .biog-text .text-content {
+  margin-top: 1rem;
+  /* Additional styling for paragraphs can be here */
+}
+
+  #biography-page .biog-text .header-container h1 {
+    font-size: clamp(32px, 6vw, 72px);
+    margin-bottom: 10px;
+    color: #36848a !important;
+    text-align:center;
+  }
+  #biography-page .biog-text .header-container .page-nav {
  
+
+    margin-bottom: 10px;
+    align-self: flex-start;
+    text-align: center;
+    padding-left:0;
+    display: block;
+    width: 100%;
+  }
+  #biography-page .biog-text .header-container .page-nav a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #0c1b1c !important;
+    padding: 0 10px;
+    display: inline-block;
+  }
+  #biography-page .biog-text .header-container .nav-divider {
+    display: inline-block;
+    width: 1px;
+    background: #ccc;
+    height: 20px;
+    vertical-align: middle;
+    margin: 0 10px;
+  }
+  #biography-page .biog-text .text-content p {
+    color: #000;
+    margin: 0 0 1em 0;
+  }
+  
+  /* --- CONTACT PAGE 50/50 LAYOUT (Desktop) --- */
+.contact-page .content {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;  /* ensure columns fill the container */
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* Left Column: Background Image */
+.contact-page .content .image {
+  width: 50%;
+  /* Use the contact.jpg as a background image */
   background-image: url('../images/contact.jpg');
-  background-size: cover;
+  background-size: contain;  /* or cover if you prefer */
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: center center;
 }
 
-.contact-page .contact-container {
-  position: relative;
-  width: 100%;
-  height: 900px;
-}
-/* Display header navigation (page-nav) in our header containers */
-/* Navigation styling inside header container */
-.page-nav {
-  margin-bottom: 10px;       /* Adjust spacing between nav and h1 */
-  align-self: flex-start;    /* Ensures nav is left aligned */
-  width: 100%;
-  text-align: left;
-  padding-left: 30px;
-}
-
-.page-nav a {
-  text-decoration: none;
-  font-size: 18px;
-  color: #0c1b1c !important;  /* Force desired color on all pages */
-  padding: 0 10px;
-  display: inline-block;
-}
-
-.page-nav .nav-divider {
-  display: inline-block;
-  width: 1px;
-  background: #ccc;
-  height: 20px;
-  vertical-align: middle;
-  margin: 0 10px;
-}
-
-
-/* --- Specific Overrides for Contact Page --- */
-
-
-/* === CONTACT PAGE BACKGROUND === */
-.contact-page {
-
-  background-image: url('../images/contact.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top center;
-}
-#section0,
-#biography-page,
-.contact-page {
-  position: relative;
-  width: 100%;
-  height: auto !important;
-  min-height: calc(var(--vh, 1vh) * 100) !important;
-  overflow: hidden;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-/* Ensure the contact container fills the page */
-.contact-page .contact-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-/* Header Container for Contact (same as on Home & Biography) */
-.contact-page .header-container {
-  position: absolute;
-  top: 30%;
-  right: 5%;
-  width: 40%;
-  z-index: 50;
+/* Right Column: Header + Text */
+.contact-page .content .text {
+  width: 50%;
+  padding: 20px;
+  background: #fff;
+  color: #333;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Ensure both nav and h1 align left */
-  text-align: left;
+  justify-content: center;
+  position: relative;
 }
 
-
-/* Navigation in header container */
-.contact-page .page-nav {
-  margin-bottom: 10px;
-  align-self: flex-start;
-  width: 100%;
-  text-align: left;
-  padding-left: 20px;  /* Adjust left padding if needed */
-}
-
-.contact-page .page-nav a {
-  text-decoration: none;
-  font-size: 18px;
-  color: #0c1b1c !important;
-  padding: 0 10px;
-  display: inline-block;
-}
-
-.contact-page .page-nav .nav-divider {
-  display: inline-block;
-  width: 1px;
-  background: #ccc;
-  height: 20px;
-  vertical-align: middle;
-  margin: 0 10px;
-}
-
-/* Contact Page h1 styling with a right-pointing arrow */
-/* Add a pseudo-element to insert a > symbol before the h1 text */
-
-
-.contact-page .header-container h1::before {
- 
-  font-size: inherit;
-  color: inherit;
-}
-
-/* Ensure the h1 link does not get default link styling */
-.contact-page .header-container h1 a {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Form Wrapper positioning on Contact Page */
-/* Position it below the header container */
-.contact-page .contact-container #form-wrapper {
-  position: absolute;
-  right: 5%;
-  top: calc(30% + 120px);  /* Adjust this value to leave space for header (h1 plus nav) */
-  width: 45%;
-  height: calc(100% - (30% + 120px));
-  border: none;
-}
-
-.contact-page .contact-container #form-wrapper iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-
-/* === BIOGRAPHY PAGE === */
-#biography-page {
-  background-image: url('../images/biog.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top center;
-
-  overflow: hidden;
-}
-
-/* For the Biography page, re-use the same header container styling */
-#biography-page .header-container {
-  position: absolute;
+.contact-page .header-container {
+  position: absolute; /* Use absolute positioning for consistency */
   top: 30%;
   right: 5%;
-  width: 40%;
+  width: 100%;
   z-index: 50;
   display: flex;
   flex-direction: column;
@@ -485,24 +530,31 @@ section {
   text-align: left;
 }
 
-
-
-
-/* Page navigation for Biography (if used) */
-#biography-page .page-nav {
+/* Contact Header (h1) Override */
+.contact-page .header-container h1 {
+  font-size: clamp(32px, 6vw, 72px);
   margin-bottom: 20px;
-  text-align: left;
+  color: #36848a !important;
 }
 
-#biography-page .page-nav a {
+/* Contact Navigation in Header */
+.contact-page .header-container .page-nav {
+
+  margin-bottom: 10px;
+  align-self: flex-start;
+  text-align: left;
+  padding-left: 170px;
+  display: block;
+  width: 100%;
+}
+.contact-page .header-container .page-nav a {
   text-decoration: none;
   font-size: 18px;
-  color: #0c1b1c;
+  color: #0c1b1c !important;
   padding: 0 10px;
   display: inline-block;
 }
-
-#biography-page .page-nav .nav-divider {
+.contact-page .header-container .nav-divider {
   display: inline-block;
   width: 1px;
   background: #ccc;
@@ -511,226 +563,169 @@ section {
   margin: 0 10px;
 }
 
-/* Biography Content Container */
-#biography-page .bio-content {
-  position: absolute;
-  top: calc(30% + 150px);  /* Increase the offset so content is below the header */
-  left: calc(100% - 15% - 33%);  /* Aligns left edge with header container's left edge (55%) */
-  width: 66%;
-  padding: 20px 10px 20px 40px;
-  box-sizing: border-box;
-  background: transparent; /* Remove opaque background */
-  border-radius: 0;       /* Remove border radius */
-  color: #333333;
-  font-size: 18pt;
-  line-height: 1.6;
-  z-index: 50;
-}
-
-#biography-page .bio-content p {
-  color: #333333;
-}
-
-/* === Other Section Backgrounds (Sections 1-9) === */
-#section1::before,
-#section2::before,
-#section3::before,
-#section4::before,
-#section5::before,
-#section6::before,
-#section7::before,
-#section8::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: -1;
-}
-
-#section1::before { background-image: url('../images/section1.jpg'); }
-#section2::before { background-image: url('../images/section2.jpg'); }
-#section3::before { background-image: url('../images/section3.jpg'); }
-#section4::before { background-image: url('../images/section4.jpg'); }
-#section5::before { background-image: url('../images/section5.jpg'); }
-#section6::before { background-image: url('../images/section6.jpg'); }
-#section7::before { background-image: url('../images/section7.jpg'); }
-#section8::before { background-image: url('../images/section8.jpg'); }
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #333;
-  color: #fff;
-  font-size: 14px;
-}
-.section-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: calc(var(--vh, 1vh) * 100);
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2;
-}
-
-#section1 .section-overlay { background-color: rgba(26, 26, 46, 0.8); }   /* Hex #1a1a2e */
-#section2 .section-overlay { background-color: rgba(22, 33, 62, 0.8); }   /* Hex #16213e */
-#section3 .section-overlay { background-color: rgba(15, 52, 96, 0.8); }   /* Hex #0f3460 */
-#section4 .section-overlay { background-color: rgba(83, 53, 74, 0.8); }   /* Hex #53354a */
-#section5 .section-overlay { background-color: rgba(44, 44, 84, 0.8); }   /* Hex #2c2c54 */
-#section6 .section-overlay { background-color: rgba(106, 5, 114, 0.8); }  /* Hex #6a0572 */
-#section7 .section-overlay { background-color: rgba(50, 14, 59, 0.8); }   /* Hex #320e3b */
-#section8 .section-overlay { background-color: rgba(27, 27, 47, 0.8); }   /* Hex #1b1b2f */
-#section9 .section-overlay { background-color: rgba(51, 51, 51, 0.8); }   /* Hex #333333 */
-
-/* Desktop (Row View) – Keep original, fixed sizes */
-footer {
-  width: 100%;
-  padding: 20px;
-  background: #333;
-  text-align: center;
-  color: #fff;
-  font-size: 14px;
-}
-
-.footer-logos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.footer-logos img {
-  max-width: 100px;
-  height: auto;
-  filter: grayscale(100%);
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-}
-
-.footer-logos img:hover {
-  opacity: 1;
-  filter: none;
-}
-
-/* Mobile (Column View) – Use dynamic scaling */
+/* --- MOBILE ADJUSTMENTS --- */
 @media screen and (max-width: 768px) {
-  footer {
-    padding: 0.8rem; /* Reduced padding */
-    font-size: 12px; /* Slightly smaller font size */
+  .contact-page .content {
+    flex-direction: column;
+    min-height: auto;
   }
-  
-  .footer-logos {
-    gap: 0.5rem; /* Smaller gap between images */
-    margin-top: 0.8rem; /* Reduced top margin */
-  }
-  
-  .footer-logos img {
-    max-width: 60px; /* Smaller images to prevent truncation */
-  }
-}
-
-@media screen and (max-width: 768px) {
-  /* Adjust the header container on all pages for mobile */
-  .header-container {
-    top: 20%;
-    right: 10%;
-    width: 80%;
-    align-items: center;
-    text-align: center;
-  }
-  
-  /* .header-container h1 {
-    font-size: 48pt;
-    margin-bottom: 5px;
-  } */
-  
-  /* For Biography and Contact header h1 */
-#biography-page .header-container h1,
-.contact-page .header-container h1 {
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-  margin: 0 0 10px 0;
-  position: relative;
-  z-index: 50;
-  /* Scalable font size: same parameters as above, adjust if desired */
-  font-size: clamp(40px, 6vw, 72px);
-  color: #36848a; /* Use your desired header color */
-}
-
-  .header-container h2 {
-    font-size: 32pt;
-    margin-bottom: 10px;
-  }
-  
-  /* Center navigation and adjust font size */
-  .page-nav {
-    margin-bottom: 10px;
-    align-self: center;
+  .contact-page .content .image,
+  .contact-page .content .text {
     width: 100%;
-    text-align: center;
-    padding-left: 0;
+  }
+  .contact-page .content .image {
+    height: 50vh;
+  }
+}
+
+  /* ======================
+     MOBILE ADJUSTMENTS (Biography & Contact)
+     ====================== */
+  @media screen and (max-width: 768px) {
+    /* Header container in right column becomes centered */
+    #biography-page .biog-text .header-container {
+      text-align: center;
+      padding: 0 10px;
+      margin-top: 5vh;  /* Reduced top margin for mobile/column view */
+    }
+    #biography-page .biog-text .header-container h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      margin-bottom: 10px;
+    }
+    #biography-page .biog-text .header-container .page-nav {
+      text-align: center;
+      padding-left: 0;
+    }
+    .page-nav a {
+      font-size: 16px;
+    }
+    .page-nav .nav-divider {
+      margin: 0 5px;
+      height: 15px;
+    }
+    /* Biography 50/50 layout stacks vertically */
+    #biography-page .biog-layout {
+      flex-direction: column;
+      height: auto;
+    }
+    #biography-page .biog-image-wrapper,
+    #biography-page .biog-text {
+      width: 100%;
+    }
+    #biography-page .biog-image {
+      height: 50vh;
+    }
+    /* Contact page adjustments (if any additional needed) */
+    .arrow {
+      width: 80px;
+      height: 80px;
+    }
   }
   
-  .page-nav a {
-    font-size: 16px;
+  /* Mobile: Scale arrows to 60% */
+  @media screen and (max-width: 768px) {
+    .arrow {
+      width: calc(100px * 0.6);
+      height: calc(100px * 0.6);
+    }
   }
-  
-  .page-nav .nav-divider {
-    margin: 0 5px;
-    height: 15px;
-  }
-  
-  /* Contact Page adjustments */
-  .contact-page .contact-container h1 {
-    font-size: 48pt;
-  }
-  
+
+  /* Contact Container Height Adjustment */
+.contact-page .contact-container {
+  position: relative;
+  width: 100%;
+  /* Use 70% of the viewport height (adjust as needed) */
+  height: 70vh;
+  min-height: 70vh;
+}
+
   .contact-page .contact-container #form-wrapper {
-    top: calc(20% + 80px);
-    right: 10%;
-    width: 80%;
-    height: calc(100% - (20% + 80px));
+    position: absolute;
+    right: 0;
+    top: calc(10% + 50px);
+    width: 100%;
+    height: calc(100% - (10% + 190px));
+    border: none;
+  }
+  .contact-page .contact-container #form-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
   }
   
-  /* Biography Page adjustments */
-  #biography-page .header-container {
-    top: 20%;
-    right: 10%;
-    width: 80%;
-    align-items: center;
+  
+  /* ======================
+     OTHER SECTIONS (1-9) & FOOTER
+     ====================== */
+  #section1::before,
+  #section2::before,
+  #section3::before,
+  #section4::before,
+  #section5::before,
+  #section6::before,
+  #section7::before,
+  #section8::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+  }
+  #section1::before { background-image: url('../images/section1.jpg'); }
+  #section2::before { background-image: url('../images/section2.jpg'); }
+  #section3::before { background-image: url('../images/section3.jpg'); }
+  #section4::before { background-image: url('../images/section4.jpg'); }
+  #section5::before { background-image: url('../images/section5.jpg'); }
+  #section6::before { background-image: url('../images/section6.jpg'); }
+  #section7::before { background-image: url('../images/section7.jpg'); }
+  #section8::before { background-image: url('../images/section8.jpg'); }
+  
+  /* Footer */
+  footer {
     text-align: center;
+    padding: 20px;
+    background: #333;
+    color: #fff;
+    font-size: 14px;
+  }
+  .footer-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .footer-logos img {
+    max-width: 100px;
+    height: auto;
+    filter: grayscale(100%);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+  .footer-logos img:hover {
+    opacity: 1;
+    filter: none;
   }
   
-  #biography-page .header-container h1 {
-    font-size: 48pt;
+  /* Mobile Footer Adjustments */
+  @media screen and (max-width: 768px) {
+    footer {
+      padding: 0.8rem;
+      font-size: 12px;
+    }
+    .footer-logos {
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+    }
+    .footer-logos img {
+      max-width: 60px;
+    }
   }
   
-  #biography-page .bio-content {
-    top: calc(20% + 80px);
-    left: 10%;
-    width: 80%;
-    padding: 10px;
-    font-size: 16pt;
-  }
+
   
-  /* Optionally adjust arrow sizes if needed */
-  .arrow {
-    width: 80px;
-    height: 80px;
-  }
-}
-/* Column view (mobile) - scale arrows to 60% of desktop size */
-@media screen and (max-width: 768px) {
-  .arrow {
-    width: calc(100px * 0.6);
-    height: calc(100px * 0.6);
-  }
-}

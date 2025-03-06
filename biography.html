@@ -8,28 +8,43 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body id="biography-page">
-    <section id="section-biography">
-        <div class="bg-cover" style="background-image: url('../images/biog.jpg');"></div>
-        
-        <!-- Header container: Navigation on top -->
+  <section>
+    <div class="biog-layout">
+      <!-- Left: Image Column -->
+      <div class="biog-image-wrapper">
+        <div class="biog-image"></div>
+      </div>
+      <!-- Right: Text Column -->
+      <div class="biog-text">
+        <!-- Header (h1 only now) -->
         <div class="header-container">
-          <nav class="page-nav">
-            <a href="index.html">Home</a>
-            <span class="nav-divider"></span>
-            <a href="contact.html">Contact</a>
-          </nav>
           <h1>Biography</h1>
         </div>
-            
-    <!-- Biography content container -->
-    <div class="bio-content">
-      <p>
-        Ed Devane is an Irish sound artist and creative technologist whose work spans music, interactive installations, and innovative digital design. His projects explore the intersection of sound, technology, and performance, inviting audiences to experience art in immersive ways.
-      </p>
-      <p>
-        With over 15 years of experience, Ed has collaborated with various organizations and communities to develop groundbreaking projects that blur the lines between art and engineering. His journey continues as he explores new creative territories.
-      </p>
+        <!-- Text content follows -->
+        <div class="text-content">
+          <p>
+            Ed Devane is an Irish sound artist and creative technologist whose work spans music, interactive installations, and innovative digital design...
+          </p>
+          <p>
+            With over 15 years of experience, Ed has collaborated with various organizations and communities to develop groundbreaking projects that blur the lines between art and engineering. His journey continues as he explores new creative territories.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- New side arrow navigation -->
+  <div class="side-arrow-container left-arrow">
+    <a href="index.html">
+      <img src="images/arrow-left.png" alt="Home">
+      <div class="arrow-text">Home</div>
+    </a>
+  </div>
+  <div class="side-arrow-container right-arrow">
+    <a href="contact.html">
+      <img src="images/arrow-right.png" alt="Contact">
+      <div class="arrow-text">Contact</div>
+    </a>
+  </div>
 </body>
 </html>

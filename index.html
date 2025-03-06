@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio of Irish Sound Artist Ed Devane</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
-  <!-- The numbered nav remains hidden by our CSS -->
-  <nav>
-    <a href="#section1">1</a>
-    <a href="#section2">2</a>
-    <a href="#section3">3</a>
-    <a href="#section4">4</a>
-    <a href="#section5">5</a>
-    <a href="#section6">6</a>
-    <a href="#section7">7</a>
-    <a href="#section8">8</a>
-    <a href="#section9">9</a>
-  </nav>
+<!-- New side arrow navigation for index page -->
+<div class="side-arrow-container left-arrow">
+  <a href="biography.html">
+    <img src="images/arrow-left.png" alt="Navigate to Biography">
+    <div class="arrow-text">Biography</div>
+  </a>
+</div>
+<div class="side-arrow-container right-arrow">
+  <a href="contact.html">
+    <img src="images/arrow-right.png" alt="Navigate to Contact">
+    <div class="arrow-text">Contact</div>
+  </a>
+</div>
 
   <section id="section0">
     <div class="section0-content">
@@ -28,14 +27,14 @@
         <img src="images/section0a.jpg" alt="Your Image">
       </div>
       <div class="text">
-        <h1>Ed Devane</h1>
-        <h2>Sound Artist</h2>
-        <nav class="page-nav">
-          <a href="biography.html">Biography</a>
-          <span class="nav-divider"></span>
-          <a href="contact.html">Contact</a>
-        </nav>
+        <div class="header-container">
+          <h1>Ed Devane</h1>
+          <h2>Sound Artist</h2>
+    
+        </div>
       </div>
+      
+      
     </div>
     <div class="arrow arrow-down" onclick="scrollToNext(this)">↓</div>
   </section>
