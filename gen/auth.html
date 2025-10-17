@@ -193,23 +193,30 @@
                 <li>Find "Additional Board Manager URLs" field</li>
                 <li>Paste this URL: <span class="code">https://espressif.github.io/arduino-esp32/package_esp32_index.json</span></li>
                 <li>Click <span class="highlight">OK</span></li>
+                <li><strong>IMPORTANT:</strong> Log out of Windows and log back in (this applies the JSON file)</li>
+                <li>Open Arduino IDE again</li>
                 <li>Click: <span class="highlight">Tools > Board > Boards Manager</span> (wait for it to load)</li>
                 <li>In search box, type: <span class="highlight">esp32</span></li>
                 <li>Find "esp32 by Espressif Systems" and click <span class="highlight">INSTALL</span></li>
                 <li>Wait 2-5 minutes for download and installation to complete</li>
                 <li>When finished, close Boards Manager</li>
             </ol>
-            <p style="margin-top: 10px; color: #e53e3e;"><strong>Note:</strong> Do NOT manually extract ESP32 files to desktop or other folders. Arduino IDE installs everything automatically to the correct hidden folder.</p>
+            <p style="margin-top: 10px; color: #e53e3e;"><strong>Note:</strong> If Preferences hangs after pasting the URL, log out and log back in to Windows.</p>
         </div>
 
         <div class="section">
             <h2>📚 Step 2: Install Required Libraries</h2>
-            <p>Install these libraries via Arduino IDE Library Manager:</p>
+            <p><strong>IMPORTANT: Libraries MUST be installed through Arduino IDE, not copied from shared drives!</strong></p>
             <ol class="steps">
-                <li>Click: <span class="highlight">Tools > Manage Libraries</span></li>
-                <li>Search: <span class="highlight">Adafruit MCP23X17</span> → Click Install</li>
-                <li>Search: <span class="highlight">Adafruit NeoPixel</span> → Click Install</li>
+                <li>In Arduino IDE, click: <span class="highlight">Tools > Manage Libraries</span></li>
+                <li>Wait for library index to load</li>
+                <li>Search: <span class="highlight">Adafruit MCP23X17</span></li>
+                <li>Click <span class="highlight">INSTALL</span> (installs to your local user profile)</li>
+                <li>Search: <span class="highlight">Adafruit NeoPixel</span></li>
+                <li>Click <span class="highlight">INSTALL</span></li>
+                <li>Close Library Manager when done</li>
             </ol>
+            <p style="margin-top: 10px; color: #e53e3e;"><strong>Note:</strong> Libraries on shared drives will NOT work. Each user must install libraries through Arduino IDE's Library Manager to their local profile.</p>
         </div>
 
         <div class="section">
