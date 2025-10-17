@@ -3,20 +3,20 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             background: #1a1a1a;
             color: #e0e0e0;
             overflow: hidden;
         }
-        
+
         #root {
             width: 100vw;
             height: 100vh;
             display: flex;
         }
-        
+
         .loading {
             display: flex;
             justify-content: center;
@@ -24,19 +24,4 @@
             height: 100vh;
             font-size: 18px;
             color: #666;
-        }</style><script>
-        // Auth check - redirect to auth page if not authenticated
-        function simpleHash(str) {
-            let hash = 0;
-            for (let i = 0; i < str.length; i++) {
-                const char = str.charCodeAt(i);
-                hash = ((hash << 5) - hash) + char;
-                hash = hash & hash;
-            }
-            return hash.toString(36);
-        }
-        const correctHash = simpleHash('dkit');
-        if (sessionStorage.getItem('auth') !== correctHash) {
-            window.location.href = 'auth.html';
-        }
-    </script><script defer="defer" src="bundle.js"></script></head><body><div id="root"><div class="loading">Loading Soniphorm Gen Patcher...</div></div></body></html>
+        }</style><link rel="icon" href="favicon.png"><script>if(sessionStorage.getItem("authenticated")!=="true"){window.location.href="auth.html";}</script><script defer="defer" src="bundle.js"></script></head><body><div id="root"><div class="loading">Loading Soniphorm Gen Patcher...</div></div></body></html>
