@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soniphorm Gen - Access (macOS)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section h2 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .steps {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .steps li {
+            counter-increment: step-counter;
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #667eea;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .download-btn:hover {
+            background: #5568d3;
+        }
+
+        .code {
+            background: #2d3748;
+            color: #68d391;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .password-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #5568d3;
+        }
+
+        .error {
+            color: #e53e3e;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Soniphorm Gen v1.0</h1>
+        <p class="subtitle">ESP32-S3 Modular Synthesis Platform (macOS Setup)</p>
+
+        <div class="section">
+            <h2>⚠️ Step 1: Install ESP32 Board Support</h2>
+            <p><strong>IMPORTANT: Install through Arduino IDE's Board Manager (not manual download!):</strong></p>
+            <ol class="steps">
+                <li>Open Arduino IDE</li>
+                <li>Click: <span class="highlight">Arduino IDE > Settings</span> (or <span class="code">Cmd+,</span>)</li>
+                <li>Find "Additional Board Manager URLs" field</li>
+                <li>Paste this URL: <span class="code">https://espressif.github.io/arduino-esp32/package_esp32_index.json</span></li>
+                <li>Click <span class="highlight">OK</span></li>
+                <li><strong>IMPORTANT:</strong> Quit Arduino IDE completely (<span class="code">Cmd+Q</span>) and reopen it (this applies the JSON file)</li>
+                <li>Click: <span class="highlight">Tools > Board > Boards Manager</span> (wait for it to load)</li>
+                <li>In search box, type: <span class="highlight">esp32</span></li>
+                <li>Find "esp32 by Espressif Systems" and click <span class="highlight">INSTALL</span></li>
+                <li>Wait 2-5 minutes for download and installation to complete</li>
+                <li>When finished, close Boards Manager</li>
+            </ol>
+            <p style="margin-top: 10px; color: #e53e3e;"><strong>Note:</strong> If Settings becomes unresponsive after pasting the URL, quit Arduino IDE (<span class="code">Cmd+Q</span>) and reopen it.</p>
+        </div>
+
+        <div class="section">
+            <h2>📚 Step 2: Install Required Libraries</h2>
+            <p><strong>IMPORTANT: Libraries MUST be installed through Arduino IDE, not copied from shared drives!</strong></p>
+            <ol class="steps">
+                <li>In Arduino IDE, click: <span class="highlight">Tools > Manage Libraries</span></li>
+                <li>Wait for library index to load</li>
+                <li>Search: <span class="highlight">Adafruit MCP23X17</span></li>
+                <li>Click <span class="highlight">INSTALL</span> (installs to your local user profile)</li>
+                <li>Search: <span class="highlight">Adafruit NeoPixel</span></li>
+                <li>Click <span class="highlight">INSTALL</span></li>
+                <li>Close Library Manager when done</li>
+            </ol>
+            <p style="margin-top: 10px; color: #e53e3e;"><strong>Note:</strong> Libraries on shared drives will NOT work. Each user must install libraries through Arduino IDE's Library Manager to their local profile.</p>
+        </div>
+
+        <div class="section">
+            <h2>📋 Step 3: Install Soniphorm Gen Board Profile</h2>
+            <p>After Steps 1 and 2 are complete, add the custom board profile:</p>
+
+            <ol class="steps">
+                <li>Close Arduino IDE (if open) - <span class="code">Cmd+Q</span></li>
+                <li>Open Finder</li>
+                <li>Press <span class="code">Cmd+Shift+G</span> (Go to Folder)</li>
+                <li>Paste: <span class="code">~/Library/Arduino15/packages/esp32/hardware/esp32</span></li>
+                <li>Press Enter - you'll see a folder with a version number (e.g., 3.0.7 or 3.3.1)</li>
+                <li>Open that version folder, then open <span class="highlight">boards.txt</span> with TextEdit</li>
+                <li>Create backup: Right-click → Duplicate → Rename copy to <span class="highlight">boards.txt.backup</span></li>
+                <li>Download board profile file (button below)</li>
+                <li>Open downloaded <span class="highlight">soniphorm_board.txt</span> with TextEdit</li>
+                <li>Copy all text (<span class="code">Cmd+A</span>, <span class="code">Cmd+C</span>)</li>
+                <li>Go back to boards.txt, scroll to bottom (<span class="code">Cmd+Down Arrow</span>)</li>
+                <li>Paste at end (<span class="code">Cmd+V</span>)</li>
+                <li>Save and close (<span class="code">Cmd+S</span>)</li>
+                <li>Restart Arduino IDE</li>
+                <li>Go to: <span class="highlight">Tools > Board > esp32 > Soniphorm Gen v1.0</span></li>
+            </ol>
+
+            <a href="arduino_board_profile/soniphorm_board.txt" class="download-btn" download>⬇️ Download Board Profile (soniphorm_board.txt)</a>
+        </div>
+
+        <div class="password-section">
+            <h2>🔒 Enter Access Code</h2>
+            <p>Enter the workshop access code to continue to the patcher:</p>
+
+            <form id="authForm">
+                <div class="form-group">
+                    <label for="password">Access Code:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter access code" required>
+                </div>
+                <button type="submit">Access Patcher</button>
+                <p class="error" id="error">Incorrect access code. Please try again.</p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function simpleHash(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return hash;
+        }
+
+        const correctHash = simpleHash('dkit');
+
+        document.getElementById('authForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('password').value;
+            const inputHash = simpleHash(password);
+
+            if (inputHash === correctHash) {
+                sessionStorage.setItem('authenticated', 'true');
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
+            }
+        });
+
+        // Check if already authenticated
+        if (sessionStorage.getItem('authenticated') === 'true') {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
